@@ -1,0 +1,35 @@
+{
+    "name": "laravel-bundle/laravel-repository",
+    "description": "Laravel repository pattern",
+    "keywords": ["laravel", "repository", "eloquent", "model"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jefferson Agostinho",
+            "email": "jefferson.andrade.agostinho@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "illuminate/config": "~5.5",
+        "illuminate/console": "~5.5",
+        "illuminate/database": "~5.5",
+        "illuminate/http": "~5.5",
+        "illuminate/pagination": "~5.5",
+        "illuminate/support": "~5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelBundle\\Repository\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelBundle\\Repository\\RepositoryServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
