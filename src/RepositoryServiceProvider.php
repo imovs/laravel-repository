@@ -18,6 +18,7 @@ class RepositoryServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
+    
     /**
      *
      * @return void

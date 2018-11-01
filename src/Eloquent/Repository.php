@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as Application;
 use LaravelBundle\Repository\Exceptions\RepositoryException;
-use LaravelBundle\Repository\Presenter\Contracts\Presenter;
-use LaravelBundle\Repository\Presenter\Presentable;
 use LaravelBundle\Repository\Eloquent\Contracts\Repository as RepositoryContract;
 
 
@@ -19,10 +17,8 @@ use LaravelBundle\Repository\Eloquent\Contracts\Repository as RepositoryContract
  * @package LaravelBundle\Repository\Eloquent
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
-abstract class Repository implements RepositoryContract, Presenter
+abstract class Repository implements RepositoryContract
 {
-    use Presentable;
-
     /**
      * Laravel container
      *
@@ -60,7 +56,6 @@ abstract class Repository implements RepositoryContract, Presenter
     {
         $this->app = $app;
         $this->makeModel();
-        $this->makePresenter();
         $this->boot();
     }
 
@@ -325,7 +320,7 @@ abstract class Repository implements RepositoryContract, Presenter
     {
         $this->applyScope();
 
-        $model = $this->model->findOrFail($id, $columns);
+        $model = $this->model->find($id, $columns);
 
         $this->resetModel();
 
@@ -703,21 +698,5 @@ abstract class Repository implements RepositoryContract, Presenter
         $this->data = null;
 
         return $data;
-    }
-
-    /**
-     * Transform data
-     *
-     * @return Illuminate\Http\Resources\Json\JsonResource|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function presentable()
-    {
-        if (! $this->presenter instanceof Presenter) {
-            throw new RepositoryException(
-                "Class {$presenter} must be an instance of LaravelBundle\\Repository\\Presenter\\Contracts\\Presenter"
-            );
-        }
-
-        return $this->presenter->present($this->result());
     }
 }
