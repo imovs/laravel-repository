@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelBundle\Repository\Eloquent\Contracts;
+namespace Imovs\Repository\Eloquent\Contracts;
 
 /**
  * Interface Query
  *
- * @package LaravelBundle\Repository\Eloquent\Contracts
+ * @package Imovs\Repository\Eloquent\Contracts
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 interface Query
@@ -66,7 +66,7 @@ interface Query
      * Check if entity has relation
      *
      * @param string $relation
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function has($relation);
 
@@ -74,7 +74,7 @@ interface Query
      * Load relations
      *
      * @param array|string $relations
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function with($relations);
 
@@ -82,7 +82,7 @@ interface Query
      * Add subselect queries to count the relations.
      *
      * @param  mixed $relations
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withCount($relations);
 
@@ -91,7 +91,7 @@ interface Query
      *
      * @param string $relation
      * @param closure $closure
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function whereHas($relation, $closure);
 
@@ -99,7 +99,7 @@ interface Query
      * Querying relationship absence - doesnt have
      *
      * @param string|array $relation
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function doesntHave($relation);
 
@@ -108,7 +108,7 @@ interface Query
      *
      * @param string|array $relation
      * @param \Closure $closure
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function whereDoesntHave($relation, $closure);
 
@@ -116,7 +116,7 @@ interface Query
      * Set hidden fields
      *
      * @param array $fields
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function hidden(array $fields);
 
@@ -124,7 +124,7 @@ interface Query
      * Order by
      * @param  string $column
      * @param  string $direction
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function orderBy($column, $direction = 'asc');
 
@@ -132,13 +132,13 @@ interface Query
      * Set visible fields
      *
      * @param array $fields
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function visible(array $fields);
 
     /**
      * With trashed
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withTrashed();
 
@@ -146,7 +146,7 @@ interface Query
      * Without global scope
      *
      * @param  string|array $scope
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withoutGlobalScope($scope);
 }

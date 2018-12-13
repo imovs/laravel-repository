@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelBundle\Repository;
+namespace Imovs\Repository;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class RepositoryServiceProvider
  *
- * @package LaravelBundle\Repository
+ * @package Imovs\Repository
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 class RepositoryServiceProvider extends ServiceProvider

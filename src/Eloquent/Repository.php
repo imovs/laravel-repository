@@ -1,19 +1,19 @@
 <?php
 
-namespace LaravelBundle\Repository\Eloquent;
+namespace Imovs\Repository\Eloquent;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
-use LaravelBundle\Repository\Eloquent\Concerns;
+use Imovs\Repository\Eloquent\Concerns;
 use Illuminate\Container\Container as Application;
-use LaravelBundle\Repository\Exceptions\RepositoryException;
-use LaravelBundle\Repository\Eloquent\Contracts\Repository as RepositoryContract;
+use Imovs\Repository\Exceptions\RepositoryException;
+use Imovs\Repository\Eloquent\Contracts\Repository as RepositoryContract;
 
 
 /**
  * Class Repository
  *
- * @package LaravelBundle\Repository\Eloquent
+ * @package Imovs\Repository\Eloquent
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 abstract class Repository implements RepositoryContract
@@ -111,7 +111,7 @@ abstract class Repository implements RepositoryContract
      *
      * @param \Closure $scope
      *
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function scopeQuery(Closure $scope)
     {
@@ -123,7 +123,7 @@ abstract class Repository implements RepositoryContract
     /**
      * Reset Query Scope
      *
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     protected function resetScope()
     {
@@ -135,7 +135,7 @@ abstract class Repository implements RepositoryContract
     /**
      * Apply scope in current Query
      *
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     protected function applyScope()
     {

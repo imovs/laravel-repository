@@ -1,5 +1,5 @@
 {
-    "name": "laravel-bundle/laravel-repository",
+    "name": "imovs/repository",
     "description": "Laravel repository pattern",
     "keywords": ["laravel", "repository", "eloquent", "model"],
     "license": "MIT",
@@ -20,13 +20,13 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelBundle\\Repository\\": "src/"
+            "Imovs\\Repository\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelBundle\\Repository\\RepositoryServiceProvider"
+                "Imovs\\Repository\\RepositoryServiceProvider"
             ]
         }
     },

@@ -9,7 +9,7 @@
 Execute the following command to get the latest version of the package:
 
 ```shell
-composer require laravel-bundle/laravel-repository
+composer require imovs/repository
 ```
 
 ServiceProvider will be attached automatically
@@ -17,5 +17,5 @@ ServiceProvider will be attached automatically
 Publish Configuration
 
 ```shell
-php artisan vendor:publish --provider "LaravelBundle\Repository\RepositoryServiceProvider"
+php artisan vendor:publish --provider "Imovs\Repository\RepositoryServiceProvider"
 ```

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelBundle\Repository\Eloquent\Contracts;
+namespace Imovs\Repository\Eloquent\Contracts;
 
 /**
  * Interface Create
  *
- * @package LaravelBundle\Repository\Eloquent\Contracts
+ * @package Imovs\Repository\Eloquent\Contracts
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 interface Create

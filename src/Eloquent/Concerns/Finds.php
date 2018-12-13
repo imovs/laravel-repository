@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelBundle\Repository\Eloquent\Concerns;
+namespace Imovs\Repository\Eloquent\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait Finds
  *
- * @package LaravelBundle\Repository\Eloquent\Concerns
+ * @package Imovs\Repository\Eloquent\Concerns
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 trait Finds

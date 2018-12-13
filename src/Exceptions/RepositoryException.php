@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelBundle\Repository\Exceptions;
+namespace Imovs\Repository\Exceptions;
 
 use Exception;
 
 /**
  * Class RepositoryException
  *
- * @package LaravelBundle\Repository\Exceptions
+ * @package Imovs\Repository\Exceptions
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 class RepositoryException extends Exception

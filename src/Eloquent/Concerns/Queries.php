@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelBundle\Repository\Eloquent\Concerns;
+namespace Imovs\Repository\Eloquent\Concerns;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Trait Queries
  *
- * @package LaravelBundle\Repository\Eloquent\Concerns
+ * @package Imovs\Repository\Eloquent\Concerns
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 trait Queries
@@ -84,7 +84,7 @@ trait Queries
      * Check if entity has relation
      *
      * @param string $relation
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function has($relation)
     {
@@ -97,7 +97,7 @@ trait Queries
      * Load relations
      *
      * @param array|string $relations
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function with($relations)
     {
@@ -110,7 +110,7 @@ trait Queries
      * Add subselect queries to count the relations.
      *
      * @param  mixed $relations
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withCount($relations)
     {
@@ -124,7 +124,7 @@ trait Queries
      *
      * @param string $relation
      * @param \Closure $closure
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function whereHas($relation, $closure)
     {
@@ -137,7 +137,7 @@ trait Queries
      * Querying relationship absence - doesnt have
      *
      * @param string|array $relation
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function doesntHave($relation)
     {
@@ -151,7 +151,7 @@ trait Queries
      *
      * @param string|array $relation
      * @param \Closure $closure
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function whereDoesntHave($relation, $closure)
     {
@@ -164,7 +164,7 @@ trait Queries
      * Set hidden fields
      *
      * @param array $fields
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function hidden(array $fields)
     {
@@ -177,7 +177,7 @@ trait Queries
      * Order by
      * @param  string $column
      * @param  string $direction
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function orderBy($column, $direction = 'asc')
     {
@@ -190,7 +190,7 @@ trait Queries
      * Set visible fields
      *
      * @param array $fields
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function visible(array $fields)
     {
@@ -202,7 +202,7 @@ trait Queries
     /**
      * With trashed
      *
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withTrashed()
     {
@@ -215,7 +215,7 @@ trait Queries
      * Without global scope
      *
      * @param  string|array $scope
-     * @return \LaravelBundle\Repository\Eloquent\Repository
+     * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withoutGlobalScope($scope)
     {
