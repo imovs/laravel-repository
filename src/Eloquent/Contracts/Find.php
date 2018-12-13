@@ -81,7 +81,7 @@ interface Find
      * @param array $columns
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findByField($field, $value = null, $columns = ['*']);
+    public function findByField($field, $value, $columns = ['*']);
 
     /**
      * Find data by field and value and get first
@@ -91,7 +91,7 @@ interface Find
      * @param array $columns
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByFieldFirst($field, $value = null, $columns = ['*']);
+    public function findByFieldFirst($field, $value, $columns = ['*']);
 
     /**
      * Find data by multiple fields

@@ -2,6 +2,9 @@
 
 namespace Imovs\Repository\Eloquent\Contracts;
 
+use Closure;
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Interface Query
  *

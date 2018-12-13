@@ -134,7 +134,7 @@ trait Finds
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findByField($field, $value = null, $columns = ['*'])
+    public function findByField($field, $value, $columns = ['*'])
     {
         $this->applyScope();
         $model = $this->model->where($field, '=', $value)->get($columns);
@@ -151,14 +151,14 @@ trait Finds
      * @param array $columns
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByFieldFirst($field, $value = null, $columns = ['*'])
+    public function findByFieldFirst($field, $value, $columns = ['*'])
     {
         $this->applyScope();
 
         $model = $this->model
             ->where($field, '=', $value)
-            ->get()
-            ->first($columns);
+            ->get($columns)
+            ->first();
 
         $this->resetModel();
 
