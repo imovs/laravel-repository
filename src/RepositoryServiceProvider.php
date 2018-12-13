@@ -18,7 +18,7 @@ class RepositoryServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-    
+
     /**
      *
      * @return void
@@ -31,6 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__ . '/../config/repository.php', 'repository');
     }
+    
     /**
      * Register the service provider.
      *
@@ -40,6 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         //
     }
+
     /**
      * Get the services provided by the provider.
      *
