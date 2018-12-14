@@ -1,18 +1,18 @@
 <?php
 
-namespace Imovs\Repository\Criterias;
+namespace Imovs\Repository\Criteria;
 
 use Illuminate\Support\Collection;
 use Imovs\Repository\Exceptions\RepositoryException;
-use Imovs\Repository\Criterias\Contracts\Criteria as CriteriaContract;
+use Imovs\Repository\Criteria\Contracts\Criteria as CriteriaContract;
 
 /**
- * Trait Criteria
+ * Trait RepositoryCriteria
  *
- * @package Imovs\Repository\Criterias
+ * @package Imovs\Repository\Criteria
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
- trait Criteria
+ trait RepositoryCriteria
 {
     /**
      * Collection of Criteria

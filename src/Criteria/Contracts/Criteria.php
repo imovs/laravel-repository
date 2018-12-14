@@ -1,6 +1,6 @@
 <?php
 
-namespace Imovs\Repository\Criterias\Contracts;
+namespace Imovs\Repository\Criteria\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 use Imovs\Repository\Eloquent\Contracts\Repository;
@@ -8,7 +8,7 @@ use Imovs\Repository\Eloquent\Contracts\Repository;
 /**
  * Interface Criteria
  *
- * @package \Imovs\Repository\Criterias\Contracts
+ * @package \Imovs\Repository\Criteria\Contracts
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 interface Criteria

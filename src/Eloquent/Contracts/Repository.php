@@ -2,7 +2,7 @@
 
 namespace Imovs\Repository\Eloquent\Contracts;
 
-use Imovs\Repository\Criterias\Contracts\RepositoryCriteria;
+use Imovs\Repository\Criteria\Contracts\RepositoryCriteria;
 
 /**
  * Interface Repository

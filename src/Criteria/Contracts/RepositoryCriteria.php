@@ -1,11 +1,11 @@
 <?php
 
-namespace Imovs\Repository\Criterias\Contracts;
+namespace Imovs\Repository\Criteria\Contracts;
 
 /**
  * Interface RepositoryCriteria
  *
- * @package \Imovs\Repository\Criterias\Contracts
+ * @package \Imovs\Repository\Criteria\Contracts
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
 interface RepositoryCriteria

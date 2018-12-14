@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Imovs\Repository\Eloquent\Concerns;
 use Illuminate\Container\Container as Application;
 use Imovs\Repository\Exceptions\RepositoryException;
-use Imovs\Repository\Criterias\RepositoryCriteria;
+use Imovs\Repository\Criteria\RepositoryCriteria;
 use Imovs\Repository\Eloquent\Contracts\Repository as RepositoryContract;
 
 /**
