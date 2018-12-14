@@ -3,12 +3,13 @@
 namespace Imovs\Repository\Eloquent;
 
 use Closure;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Imovs\Repository\Eloquent\Concerns;
 use Illuminate\Container\Container as Application;
 use Imovs\Repository\Exceptions\RepositoryException;
+use Imovs\Repository\Criterias\RepositoryCriteria;
 use Imovs\Repository\Eloquent\Contracts\Repository as RepositoryContract;
-
 
 /**
  * Class Repository
@@ -23,8 +24,8 @@ abstract class Repository implements RepositoryContract
          Concerns\Deletes,
          Concerns\Finds,
          Concerns\Queries,
-         Concerns\Updates;
-
+         Concerns\Updates,
+         RepositoryCriteria;
 
     /**
      * Laravel container
@@ -55,6 +56,7 @@ abstract class Repository implements RepositoryContract
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->criterias = new Collection();
         $this->makeModel();
         $this->boot();
     }

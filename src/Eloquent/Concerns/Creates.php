@@ -33,7 +33,9 @@ trait Creates
      */
     public function firstOrCreate(array $attributes)
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $model = $this->model->firstOrCreate($attributes);
         $this->resetModel();
 
@@ -48,7 +50,9 @@ trait Creates
      */
     public function firstOrNew(array $attributes)
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $model = $this->model->firstOrNew($attributes);
         $this->resetModel();
 

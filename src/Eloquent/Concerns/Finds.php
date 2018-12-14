@@ -20,6 +20,7 @@ trait Finds
      */
     public function all($columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
 
         if ($this->model instanceof Builder) {
@@ -42,7 +43,9 @@ trait Finds
      */
     public function first($columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $data = $this->model->first($columns);
         $this->resetModel();
 
@@ -72,7 +75,9 @@ trait Finds
     {
         $limit = $limit ?? config('repository.pagination.limit', 15);
 
+        $this->applyCriterias();
         $this->applyScope();
+
         $data = $this->model->{$method}($limit, $columns);
         $this->resetModel();
 
@@ -102,7 +107,9 @@ trait Finds
      */
     public function find($id, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $model = $this->model->find($id, $columns);
         $this->resetModel();
 
@@ -118,7 +125,9 @@ trait Finds
      */
     public function findOrFail($id, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $model = $this->model->findOrFail($id, $columns);
         $this->resetModel();
 
@@ -136,7 +145,9 @@ trait Finds
      */
     public function findByField($field, $value, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
+
         $model = $this->model->where($field, '=', $value)->get($columns);
         $this->resetModel();
 
@@ -153,6 +164,7 @@ trait Finds
      */
     public function findByFieldFirst($field, $value, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
 
         $model = $this->model
@@ -174,6 +186,7 @@ trait Finds
      */
     public function findWhere(array $where, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
         $this->applyConditions($where);
 
@@ -194,6 +207,7 @@ trait Finds
      */
     public function findWhereIn($field, array $values, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
 
         $model = $this->model->whereIn($field, $values)->get($columns);
@@ -213,6 +227,7 @@ trait Finds
      */
     public function findWhereNotIn($field, array $values, $columns = ['*'])
     {
+        $this->applyCriterias();
         $this->applyScope();
 
         $model = $this->model->whereNotIn($field, $values)->get($columns);

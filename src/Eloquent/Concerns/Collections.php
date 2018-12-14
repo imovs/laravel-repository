@@ -19,6 +19,8 @@ trait Collections
      */
     public function lists($column, $key = null)
     {
+        $this->applyCriterias();
+
         return $this->pluck($column, $key)->toArray();
     }
 
@@ -31,6 +33,8 @@ trait Collections
      */
     public function pluck($column, $key = null)
     {
+        $this->applyCriterias();
+
         return $this->model->pluck($column, $key);
     }
 }

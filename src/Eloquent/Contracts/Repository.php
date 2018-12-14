@@ -2,6 +2,8 @@
 
 namespace Imovs\Repository\Eloquent\Contracts;
 
+use Imovs\Repository\Criterias\Contracts\RepositoryCriteria;
+
 /**
  * Interface Repository
  *
@@ -13,7 +15,8 @@ interface Repository extends  Collection,
                               Delete,
                               Find,
                               Query,
-                              Update
+                              Update,
+                              RepositoryCriteria
 {
     //
 }
