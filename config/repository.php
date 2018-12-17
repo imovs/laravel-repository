@@ -35,8 +35,6 @@ return [
      | Configure cache
      |
      | Cache enabled: boolean
-     | Cache clean: boolean
-     | Cache time: integer
      | Cache repository: Instance of Illuminate\Contracts\Cache\Repository
      */
 
@@ -55,35 +53,13 @@ return [
 
         /*
          |--------------------------------------------------------------------------
-         | Cache clean
-         |--------------------------------------------------------------------------
-         |
-         | Enable or disable cache clean
-         | Default: true
-         */
-
-        'clean' => true,
-
-        /*
-         |--------------------------------------------------------------------------
-         | Cache time
-         |--------------------------------------------------------------------------
-         |
-         | Time of expiration cache in minutes
-         | Default: 30 minutes
-         */
-
-        'time' => 30,
-
-        /*
-         |--------------------------------------------------------------------------
          | Cache repository
          |--------------------------------------------------------------------------
          |
          | Instance of Illuminate\Contracts\Cache\Repository
-         | Default: Illuminate\Support\Facades\Cache::class
+         | Default: Illuminate\Contracts\Cache\Repository::class
          */
 
-        'repository' => Illuminate\Support\Facades\Cache::class,
+         'repository' => Illuminate\Contracts\Cache\Repository::class,
     ]
 ];

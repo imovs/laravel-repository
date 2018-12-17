@@ -9,19 +9,19 @@ use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use Imovs\Repository\Criteria\Contracts\Criteria as CriteriaContract;
 
 /**
- * Class CacheableRepository
+ * Class Cacheable
  *
  * @package \Imovs\Repository\Cache
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
-trait CacheableRepository
+trait Cacheable
 {
     /**
      * Cache minutes
      *
      * @var int
      */
-    protected $cacheTime = null;
+    protected $cacheTime = 30;
 
     /**
      * Skip cache
@@ -125,7 +125,7 @@ trait CacheableRepository
      */
     public function getCacheClean()
     {
-        return $this->cacheClean ?? config('repository.cache.clean', true);
+        return $this->cacheClean;
     }
 
     /**
@@ -135,7 +135,7 @@ trait CacheableRepository
      */
     public function getCacheTime()
     {
-        return $this->cacheTime ?? config('repository.cache.time', 30);
+        return $this->cacheTime;
     }
 
     /**
@@ -198,9 +198,9 @@ trait CacheableRepository
     protected function serializeCriteria()
     {
         try {
-            return serialize($this->getCriteria());
+            return serialize($this->getCriterias());
         } catch (Exception $e) {
-            return serialize($this->getCriteria()->map(function ($criterion) {
+            return serialize($this->getCriterias()->map(function ($criterion) {
                 return $this->serializeCriterion($criterion);
             }));
         }
