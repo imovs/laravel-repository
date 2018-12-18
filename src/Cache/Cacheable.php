@@ -244,7 +244,7 @@ trait Cacheable
     public function first($columns = ['*'])
     {
         if (!$this->allowedCache('first') || $this->isSkippedCache()) {
-            return $this->model->first($columns);
+            return parent::first($columns);
         }
 
         $key      = $this->getCacheKey('first', func_get_args());
@@ -253,7 +253,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($columns) {
-                return $this->model->first($columns);
+                return parent::first($columns);
             });
 
         $this->resetModel();
@@ -273,7 +273,7 @@ trait Cacheable
     public function find($id, $columns = ['*'])
     {
         if (!$this->allowedCache('find') || $this->isSkippedCache()) {
-            return $this->model->find($id, $columns);
+            return parent::find($id, $columns);
         }
 
         $key      = $this->getCacheKey('find', func_get_args());
@@ -282,7 +282,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($id, $columns) {
-                return $this->model->find($id, $columns);
+                return parent::find($id, $columns);
             });
 
         $this->resetModel();
@@ -301,7 +301,7 @@ trait Cacheable
     public function all($columns = ['*'])
     {
         if (!$this->allowedCache('all') || $this->isSkippedCache()) {
-            return $this->model->all($columns);
+            return parent::all($columns);
         }
 
         $key      = $this->getCacheKey('all', func_get_args());
@@ -310,7 +310,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($columns) {
-                return $this->model->all($columns);
+                return parent::all($columns);
             });
 
         $this->resetModel();
@@ -331,7 +331,7 @@ trait Cacheable
     public function paginate($limit = null, $columns = ['*'], $method = 'paginate')
     {
         if (!$this->allowedCache('paginate') || $this->isSkippedCache()) {
-            return $this->model->paginate($limit, $columns, $method);
+            return parent::paginate($limit, $columns, $method);
         }
 
         $key = $this->getCacheKey('paginate', func_get_args());
@@ -340,7 +340,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($limit, $columns, $method) {
-                return $this->model->paginate($limit, $columns, $method);
+                return parent::paginate($limit, $columns, $method);
             });
 
         $this->resetModel();
@@ -361,7 +361,7 @@ trait Cacheable
     public function findByField($field, $value = null, $columns = ['*'])
     {
         if (!$this->allowedCache('findByField') || $this->isSkippedCache()) {
-            return $this->model->findByField($field, $value, $columns);
+            return parent::findByField($field, $value, $columns);
         }
 
         $key      = $this->getCacheKey('findByField', func_get_args());
@@ -370,7 +370,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($field, $value, $columns) {
-                return $this->model->findByField($field, $value, $columns);
+                return parent::findByField($field, $value, $columns);
             });
 
         $this->resetModel();
@@ -390,7 +390,7 @@ trait Cacheable
     public function findByFieldFirst($field, $value, $columns = ['*'])
     {
         if (!$this->allowedCache('findByFieldFirst') || $this->isSkippedCache()) {
-            return $this->model->findByFieldFirst($field, $value, $columns);
+            return parent::findByFieldFirst($field, $value, $columns);
         }
 
         $key      = $this->getCacheKey('findByFieldFirst', func_get_args());
@@ -399,7 +399,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($field, $value, $columns) {
-                return $this->model->findByFieldFirst($field, $value, $columns);
+                return parent::findByFieldFirst($field, $value, $columns);
             });
 
         $this->applyCriterias();
@@ -419,7 +419,7 @@ trait Cacheable
     public function findWhere(array $where, $columns = ['*'])
     {
         if (!$this->allowedCache('findWhere') || $this->isSkippedCache()) {
-            return $this->model->findWhere($where, $columns);
+            return parent::findWhere($where, $columns);
         }
 
         $key      = $this->getCacheKey('findWhere', func_get_args());
@@ -428,7 +428,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($where, $columns) {
-                return $this->model->findWhere($where, $columns);
+                return parent::findWhere($where, $columns);
             });
 
         $this->resetModel();
@@ -448,7 +448,7 @@ trait Cacheable
     public function findWhereIn($field, array $values, $columns = ['*'])
     {
         if (!$this->allowedCache('findWhereIn') || $this->isSkippedCache()) {
-            return $this->model->findWhereIn($field, $values, $columns);
+            return parent::findWhereIn($field, $values, $columns);
         }
 
         $key      = $this->getCacheKey('findWhereIn', func_get_args());
@@ -457,7 +457,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($field, $values, $columns) {
-                return $this->model->findWhereIn($field, $values, $columns);
+                return parent::findWhereIn($field, $values, $columns);
             });
 
         $this->resetModel();
@@ -477,7 +477,7 @@ trait Cacheable
     public function findWhereNotIn($field, array $values, $columns = ['*'])
     {
         if (!$this->allowedCache('findWhereNotIn') || $this->isSkippedCache()) {
-            return $this->model->findWhereNotIn($field, $values, $columns);
+            return parent::findWhereNotIn($field, $values, $columns);
         }
 
         $key      = $this->getCacheKey('findWhereNotIn', func_get_args());
@@ -486,7 +486,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($field, $values, $columns) {
-                return $this->model->findWhereNotIn($field, $values, $columns);
+                return parent::findWhereNotIn($field, $values, $columns);
             });
 
         $this->resetModel();
@@ -505,7 +505,7 @@ trait Cacheable
     public function getByCriteria(CriteriaContract $criteria)
     {
         if (!$this->allowedCache('getByCriteria') || $this->isSkippedCache()) {
-            return $this->model->getByCriteria($criteria);
+            return parent::getByCriteria($criteria);
         }
 
         $key      = $this->getCacheKey('getByCriteria', func_get_args());
@@ -514,7 +514,7 @@ trait Cacheable
         $value = $this->getCacheRepository()
             ->tags($this->model->getTable())
             ->remember($key, $minutes, function () use ($criteria) {
-                return $this->model->getByCriteria($criteria);
+                return parent::getByCriteria($criteria);
             });
 
         $this->resetModel();
@@ -531,9 +531,7 @@ trait Cacheable
      */
     public function create(array $attributes)
     {
-        $model = $this->model->newInstance($attributes);
-        $model->save();
-        $this->resetModel();
+        $model = parent::create($attributes);
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
@@ -552,11 +550,7 @@ trait Cacheable
      */
     public function firstOrCreate(array $attributes)
     {
-        $this->applyCriterias();
-        $this->applyScope();
-
-        $model = $this->model->firstOrCreate($attributes);
-        $this->resetModel();
+        $model = parent::firstOrCreate($attributes);
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
             $this->getCacheRepository()
@@ -565,7 +559,9 @@ trait Cacheable
         }
 
         return $model;
-    }/**
+    }
+
+    /**
      * Update a entity in repository by id
      *
      * @param array $attributes
@@ -574,13 +570,7 @@ trait Cacheable
      */
     public function update(array $attributes, $id)
     {
-        $this->applyScope();
-
-        $model = $this->model->findOrFail($id);
-        $model->fill($attributes);
-        $model->save();
-
-        $this->resetModel();
+        $model = parent::update($attributes, $id);
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
@@ -600,11 +590,7 @@ trait Cacheable
      */
     public function updateOrCreate(array $attributes, array $values = [])
     {
-        $this->applyScope();
-
-        $model = $this->model->updateOrCreate($attributes, $values);
-
-        $this->resetModel();
+        $model = parent::updateOrCreate($attributes, $values);
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
             $this->getCacheRepository()
