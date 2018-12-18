@@ -17,41 +17,6 @@ use Imovs\Repository\Criteria\Contracts\Criteria as CriteriaContract;
 trait Cacheable
 {
     /**
-     * Cache minutes
-     *
-     * @var int
-     */
-    protected $cacheTime = 30;
-
-    /**
-     * Skip cache
-     *
-     * @var bool
-     */
-    protected $cacheSkip = false;
-
-    /**
-     * Skip cache
-     *
-     * @var bool
-     */
-    protected $cacheClean = true;
-
-    /**
-     * Cache only
-     *
-     * @var array
-     */
-    protected $cacheOnly = [];
-
-    /**
-     * Cache except
-     *
-     * @var array
-     */
-    protected $cacheExcept = [];
-
-    /**
      * Cache repository
      *
      * @var \Illuminate\Contracts\Cache\Repository
@@ -115,7 +80,7 @@ trait Cacheable
      */
     public function isSkippedCache()
     {
-        return $this->cacheSkip;
+        return $this->cacheSkip ?? false;
     }
 
     /**
@@ -125,7 +90,7 @@ trait Cacheable
      */
     public function getCacheClean()
     {
-        return $this->cacheClean;
+        return $this->cacheClean ?? true;
     }
 
     /**
@@ -135,7 +100,7 @@ trait Cacheable
      */
     public function getCacheTime()
     {
-        return $this->cacheTime;
+        return $this->cacheTime ?? config('repository.cache.time', 30);
     }
 
     /**
