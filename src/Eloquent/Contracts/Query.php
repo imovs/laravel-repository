@@ -152,4 +152,13 @@ interface Query
      * @return \Imovs\Repository\Eloquent\Repository
      */
     public function withoutGlobalScope($scope);
+
+    /**
+     * With and whereHas
+     *
+     * @param  string $relation
+     * @param  \Closure $constraint
+     * @return $this
+     */
+    public function withAndWhereHas($relation, $constraint);
 }
