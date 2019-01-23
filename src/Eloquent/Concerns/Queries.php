@@ -223,4 +223,20 @@ trait Queries
 
         return $this;
     }
+
+    /**
+     * With and whereHas
+     *
+     * @param  string $relation
+     * @param  \Closure $constraint
+     * @return $this
+     */
+    public function withAndWhereHas($relation, $constraint)
+    {
+        $this->model = $this->model
+            ->whereHas($relation, $constraint)
+            ->with([$relation => $constraint]);
+
+        return $this;
+    }
 }
