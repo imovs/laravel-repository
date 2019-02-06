@@ -13,6 +13,19 @@ use Illuminate\Database\Eloquent\Builder;
 trait Finds
 {
     /**
+     * Get limit
+     *
+     * @param  int $limit
+     * @return int
+     */
+    protected function getLimit($limit = null)
+    {
+        return request()->limit
+            ?? $limit
+            ?? config('repository.pagination.limit', 15);
+    }
+
+    /**
      * Retrieve all data
      *
      * @param array $columns
@@ -36,6 +49,17 @@ trait Finds
     }
 
     /**
+     * Alias of all method
+     *
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function get($columns = ['*'])
+    {
+        return $this->all($columns);
+    }
+
+    /**
      * Retrieve first data
      *
      * @param array $columns
@@ -53,17 +77,6 @@ trait Finds
     }
 
     /**
-     * Alias of all method
-     *
-     * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function get($columns = ['*'])
-    {
-        return $this->all($columns);
-    }
-
-    /**
      * Retrieve all data paginated
      *
      * @param null $limit
@@ -73,7 +86,7 @@ trait Finds
      */
     public function paginate($limit = null, $columns = ['*'], $method = 'paginate')
     {
-        $limit = $limit ?? config('repository.pagination.limit', 15);
+        $limit = $this->getLimit($limit);
 
         $this->applyCriterias();
         $this->applyScope();
@@ -93,8 +106,6 @@ trait Finds
      */
     public function simplePaginate($limit = null, $columns = ['*'])
     {
-        $limit = $limit ?? config('repository.pagination.limit', 15);
-
         return $this->paginate($limit, $columns, 'simplePaginate');
     }
 
