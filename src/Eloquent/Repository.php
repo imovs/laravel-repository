@@ -57,7 +57,8 @@ abstract class Repository implements RepositoryContract
     {
         $this->app = $app;
         $this->criterias = new Collection();
-        $this->makeModel();
+        $this->model = $this->makeModel();
+        
         $this->boot();
     }
 
@@ -93,7 +94,7 @@ abstract class Repository implements RepositoryContract
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
-        return $this->model = $model;
+        return $model;
     }
 
     /**
@@ -105,7 +106,7 @@ abstract class Repository implements RepositoryContract
      */
     public function resetModel()
     {
-        $this->makeModel();
+        $this->model = $this->makeModel();
     }
 
     /**

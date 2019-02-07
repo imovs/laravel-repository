@@ -24,13 +24,15 @@ trait Cacheable
     protected $cacheRepository = null;
 
     /**
-     * [Enter extra keys to mount the cache
+     * Get tag to cache
      *
-     * @return string
+     * @return mixed|\Illuminate\Database\Eloquent\Model
      */
-    protected function extraKeys()
+    public function getCacheTag()
     {
-        return '';
+        $model = $this->makeModel();
+
+        return $model->getTable();
     }
 
     /**
@@ -151,7 +153,7 @@ trait Cacheable
             '%s@%s:%s',
             get_called_class(),
             $method,
-            md5($args . $criteria . $request->fullUrl() . $this->extraKeys())
+            md5($args . $criteria . $request->fullUrl())
         );
     }
 
@@ -216,7 +218,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($columns) {
                 return parent::first($columns);
             });
@@ -245,7 +247,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($id, $columns) {
                 return parent::find($id, $columns);
             });
@@ -273,7 +275,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($columns) {
                 return parent::all($columns);
             });
@@ -303,7 +305,7 @@ trait Cacheable
         $minutes = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($limit, $columns, $method) {
                 return parent::paginate($limit, $columns, $method);
             });
@@ -333,7 +335,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($field, $value, $columns) {
                 return parent::findByField($field, $value, $columns);
             });
@@ -362,7 +364,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($field, $value, $columns) {
                 return parent::findByFieldFirst($field, $value, $columns);
             });
@@ -391,7 +393,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($where, $columns) {
                 return parent::findWhere($where, $columns);
             });
@@ -420,7 +422,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($field, $values, $columns) {
                 return parent::findWhereIn($field, $values, $columns);
             });
@@ -449,7 +451,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($field, $values, $columns) {
                 return parent::findWhereNotIn($field, $values, $columns);
             });
@@ -477,7 +479,7 @@ trait Cacheable
         $minutes  = $this->getCacheTime();
 
         $value = $this->getCacheRepository()
-            ->tags($this->model->getTable())
+            ->tags($this->getCacheTag())
             ->remember($key, $minutes, function () use ($criteria) {
                 return parent::getByCriteria($criteria);
             });
@@ -500,7 +502,7 @@ trait Cacheable
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
@@ -519,7 +521,7 @@ trait Cacheable
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
@@ -539,7 +541,7 @@ trait Cacheable
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
@@ -559,7 +561,7 @@ trait Cacheable
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
@@ -578,7 +580,7 @@ trait Cacheable
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
@@ -597,7 +599,7 @@ trait Cacheable
 
         if ($this->getCacheClean()) {
             $this->getCacheRepository()
-                ->tags($model->getTable())
+                ->tags($this->getCacheTag())
                 ->flush();
         }
 
