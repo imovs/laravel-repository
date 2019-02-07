@@ -13,6 +13,13 @@ use Illuminate\Contracts\Cache\Repository as CacheRepository;
 interface Cacheable
 {
     /**
+     * Get tag to cache
+     *
+     * @return mixed|\Illuminate\Database\Eloquent\Model
+     */
+    public function getCacheTag();
+
+    /**
      * Set Cache Repository
      *
      * @param \Illuminate\Contracts\Cache\Repository $cacheRepository
