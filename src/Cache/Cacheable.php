@@ -565,4 +565,42 @@ trait Cacheable
 
         return $model;
     }
+
+    /**
+     * Delete a entity by id
+     *
+     * @param $id
+     * @return bool
+     */
+    public function delete($id)
+    {
+        $deleted = parent::delete($id);
+
+        if ($this->getCacheClean()) {
+            $this->getCacheRepository()
+                ->tags($model->getTable())
+                ->flush();
+        }
+
+        return $deleted;
+    }
+
+    /**
+     * Delete multiple entities.
+     *
+     * @param array $where
+     * @return bool
+     */
+    public function deleteWhere(array $where)
+    {
+        $deleted = parent::deleteWhere($where);
+
+        if ($this->getCacheClean()) {
+            $this->getCacheRepository()
+                ->tags($model->getTable())
+                ->flush();
+        }
+
+        return $deleted;
+    }
 }
