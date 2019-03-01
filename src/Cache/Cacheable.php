@@ -36,6 +36,40 @@ trait Cacheable
     }
 
     /**
+     * Clear relative entities
+     *
+     * @return array
+     */
+    public function clearRelativeRepositoryCache()
+    {
+        return [];
+    }
+
+    /**
+     * Clear cache
+     *
+     * @param bool $cleanRelatives
+     *
+     * @return void
+     */
+    public function clearCache($cleanRelatives = true)
+    {
+        $this->getCacheRepository()
+            ->tags($this->getCacheTag())
+            ->flush();
+
+        if ($cleanRelatives) {
+            $relativeRepositories = collect($this->clearRelativeRepositoryCache());
+
+            if ($relativeRepositories->isNotEmpty()) {
+                foreach ($relativeRepositories as $repository) {
+                    app($repository)->clearCache(false);
+                }
+            }
+        }
+    }
+
+    /**
      * Set cache repository
      *
      * @param \Illuminate\Contracts\Cache\Repository $repository
@@ -501,9 +535,7 @@ trait Cacheable
         $model = parent::create($attributes);
 
         if ($this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $this->clearCache();
         }
 
         return $model;
@@ -520,9 +552,7 @@ trait Cacheable
         $model = parent::firstOrCreate($attributes);
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $this->clearCache();
         }
 
         return $model;
@@ -540,9 +570,7 @@ trait Cacheable
         $model = parent::update($attributes, $id);
 
         if ($this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $this->clearCache();
         }
 
         return $model;
@@ -560,9 +588,7 @@ trait Cacheable
         $model = parent::updateOrCreate($attributes, $values);
 
         if ($model->wasRecentlyCreated && $this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $$this->clearCache();
         }
 
         return $model;
@@ -579,9 +605,7 @@ trait Cacheable
         $deleted = parent::delete($id);
 
         if ($this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $this->clearCache();
         }
 
         return $deleted;
@@ -598,9 +622,7 @@ trait Cacheable
         $deleted = parent::deleteWhere($where);
 
         if ($this->getCacheClean()) {
-            $this->getCacheRepository()
-                ->tags($this->getCacheTag())
-                ->flush();
+            $this->clearCache();
         }
 
         return $deleted;
