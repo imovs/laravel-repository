@@ -10,8 +10,6 @@ use Illuminate\Container\Container as Application;
 use Imovs\Repository\Exceptions\RepositoryException;
 use Imovs\Repository\Criteria\RepositoryCriteria;
 use Imovs\Repository\Eloquent\Contracts\Repository as RepositoryContract;
-use Suitmedia\Cacheable\Traits\Repository\CacheableTrait;
-use Suitmedia\Cacheable\Contracts\CacheableRepository;
 
 /**
  * Class Repository
@@ -19,7 +17,7 @@ use Suitmedia\Cacheable\Contracts\CacheableRepository;
  * @package Imovs\Repository\Eloquent
  * @author Jefferson Agostinho <jefferson.andrade.agostinho@gmail.com>
  */
-abstract class Repository implements RepositoryContract, CacheableRepository
+abstract class Repository implements RepositoryContract
 {
     use  Concerns\Collections,
          Concerns\Creates,
@@ -27,8 +25,7 @@ abstract class Repository implements RepositoryContract, CacheableRepository
          Concerns\Finds,
          Concerns\Queries,
          Concerns\Updates,
-         RepositoryCriteria,
-         CacheableTrait;
+         RepositoryCriteria;
 
     /**
      * Laravel container
@@ -169,26 +166,5 @@ abstract class Repository implements RepositoryContract, CacheableRepository
                 $this->model = $this->model->where($field, '=', $value);
             }
         }
-    }
-
-    /**
-     * Return the cache tags which would
-     * be used by the repository.
-     *
-     * @return mixed
-     */
-    public function cacheTags()
-    {
-        if (property_exists($this, 'cacheTags')) {
-            return (array) static::$cacheTags;
-        }
-
-        $model = $this->model();
-
-        if (is_string($model)) {
-            $model = \App::make($model);
-        }
-
-        return $model->cacheTags();
     }
 }
