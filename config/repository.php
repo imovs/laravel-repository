@@ -38,28 +38,28 @@ return [
      | Cache repository: Instance of Illuminate\Contracts\Cache\Repository
      */
 
-    'cache' => [
+    'cacheable' => [
 
         /*
          |--------------------------------------------------------------------------
          | Cache enabled
          |--------------------------------------------------------------------------
          |
-         | Enable or disable cache
+         | Define whether caching is enabled
          | Default: false
          */
 
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          |--------------------------------------------------------------------------
-         | Cache repository
+         | Cache duration
          |--------------------------------------------------------------------------
          |
-         | Instance of Illuminate\Contracts\Cache\Repository
-         | Default: Illuminate\Contracts\Cache\Repository::class
+         | Define the default cache duration in seconds
+         | Default: 1800 || 30 minutes
          */
 
-         'repository' => Illuminate\Contracts\Cache\Repository::class,
+        'duration' => 1800,
     ]
 ];
