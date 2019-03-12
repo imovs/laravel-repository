@@ -1,7 +1,7 @@
 {
-    "name": "imovs/repository",
+    "name": "imovs/laravel-repository",
     "description": "Laravel repository pattern",
-    "keywords": ["laravel", "repository", "eloquent", "model"],
+    "keywords": ["laravel", "repository", "eloquent", "model", "cache"],
     "license": "MIT",
     "authors": [
         {
