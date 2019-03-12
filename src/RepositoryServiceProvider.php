@@ -3,6 +3,10 @@
 namespace Imovs\Repository;
 
 use Illuminate\Support\ServiceProvider;
+use Imovs\Repository\Cacheable\Model\Observer;
+use Imovs\Repository\Cacheable\CacheableService;
+use Illuminate\Contracts\Cache\Repository as CacheRepository;
+use Imovs\Repository\Cacheable\Contracts\CacheableService as CacheableServiceContract;
 
 /**
  * Class RepositoryServiceProvider
@@ -31,7 +35,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__ . '/../config/repository.php', 'repository');
     }
-    
+
     /**
      * Register the service provider.
      *
@@ -39,16 +43,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
+        $this->app->singleton(CacheableServiceContract::class, function () {
+            return new CacheableService(app(CacheRepository::class));
+        });
     }
 }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Imovs\Repository\Eloquent\Concerns;
-use Illuminate\Container\Container as Application;
+use Illuminate\Container\Container as App;
 use Imovs\Repository\Exceptions\RepositoryException;
 use Imovs\Repository\Criteria\RepositoryCriteria;
 use Imovs\Repository\Eloquent\Contracts\Repository as RepositoryContract;
@@ -53,12 +53,12 @@ abstract class Repository implements RepositoryContract
      *
      * @param \Illuminate\Container\Container $app
      */
-    public function __construct(Application $app)
+    public function __construct(App $app)
     {
         $this->app = $app;
         $this->criterias = new Collection();
         $this->model = $this->makeModel();
-        
+
         $this->boot();
     }
 
