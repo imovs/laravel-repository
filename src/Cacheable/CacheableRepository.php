@@ -11,6 +11,13 @@ namespace Imovs\Repository\Cacheable;
 trait CacheableRepository
 {
     /**
+     * Cache skip
+     *
+     * @var bool
+     */
+    private $cacheSkip = false;
+
+    /**
      * Get the class name
      *
      * @return string
@@ -104,5 +111,28 @@ trait CacheableRepository
         }
 
         return $result;
+    }
+
+    /**
+     * Skip Cache
+     *
+     * @param bool $status
+     * @return $this
+     */
+    public function skipCache($status = true)
+    {
+        $this->cacheSkip = $status;
+
+        return $this;
+    }
+
+    /**
+     * Cache is skipped
+     * 
+     * @return bool
+     */
+    public function isSkippedCache()
+    {
+        return $this->cacheSkip;
     }
 }
