@@ -56,6 +56,10 @@ abstract class Repository extends BaseRepository implements CacheableContract
             return false;
         }
 
+        if ($this->isSkippedCache()) {
+            return false;
+        }
+
         return !in_array($method, $this->cacheExcept(), true);
     }
 
