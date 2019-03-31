@@ -53,14 +53,15 @@ trait CacheableRepository
      */
     public function cacheKey($method, $args)
     {
-        $args     = sha1(serialize($args));
+        $args     = serialize($args);
         $criteria = $this->serializeCriteria();
+        $request  = request()->fullUrl() . request()->getContent();
 
         return sprintf(
             '%s@%s:%s',
             $this->className(),
             $method,
-            sha1(serialize($args) . $this->serializeCriteria() . request()->fullUrl())
+            sha1($args . $criteria . $request)
         );
     }
 
@@ -128,7 +129,7 @@ trait CacheableRepository
 
     /**
      * Cache is skipped
-     * 
+     *
      * @return bool
      */
     public function isSkippedCache()
