@@ -28,22 +28,6 @@ trait CacheableRepository
     }
 
     /**
-     * Serialize the criteria making sure the Closures are taken care of.
-     *
-     * @return string
-     */
-    protected function serializeCriteria()
-    {
-        try {
-            return serialize($this->getCriterias());
-        } catch (Exception $e) {
-            return serialize($this->getCriterias()->map(function ($criterion) {
-                return $this->serializeCriterion($criterion);
-            }));
-        }
-    }
-
-    /**
      * Generate cache key.
      *
      * @param string $method
@@ -54,14 +38,13 @@ trait CacheableRepository
     public function cacheKey($method, $args)
     {
         $args     = serialize($args);
-        $criteria = $this->serializeCriteria();
         $request  = request()->fullUrl() . request()->getContent();
 
         return sprintf(
             '%s@%s:%s',
             $this->className(),
             $method,
-            sha1($args . $criteria . $request)
+            sha1($args . $request)
         );
     }
 
