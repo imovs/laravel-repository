@@ -28,6 +28,16 @@ trait CacheableRepository
     }
 
     /**
+     * Extra key for the cache
+     *
+     * @return string
+     */
+    protected function extraKey()
+    {
+        return '';
+    }
+
+    /**
      * Generate cache key.
      *
      * @param string $method
@@ -44,7 +54,7 @@ trait CacheableRepository
             '%s@%s:%s',
             $this->className(),
             $method,
-            sha1($args . $request)
+            sha1($args . $request . $this->extraKey())
         );
     }
 
