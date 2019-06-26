@@ -28,19 +28,13 @@ trait CacheableRepository
     }
 
     /**
-     * Serialize the criteria making sure the Closures are taken care of.
+     * Extra key for the cache
      *
      * @return string
      */
-    protected function serializeCriteria()
+    protected function extraKey()
     {
-        try {
-            return serialize($this->getCriterias());
-        } catch (Exception $e) {
-            return serialize($this->getCriterias()->map(function ($criterion) {
-                return $this->serializeCriterion($criterion);
-            }));
-        }
+        return '';
     }
 
     /**
@@ -53,14 +47,14 @@ trait CacheableRepository
      */
     public function cacheKey($method, $args)
     {
-        $args     = sha1(serialize($args));
-        $criteria = $this->serializeCriteria();
+        $args     = serialize($args);
+        $request  = request()->fullUrl() . request()->getContent();
 
         return sprintf(
             '%s@%s:%s',
             $this->className(),
             $method,
-            sha1(serialize($args) . $this->serializeCriteria() . request()->fullUrl())
+            sha1($args . $request . $this->extraKey())
         );
     }
 
@@ -128,7 +122,7 @@ trait CacheableRepository
 
     /**
      * Cache is skipped
-     * 
+     *
      * @return bool
      */
     public function isSkippedCache()

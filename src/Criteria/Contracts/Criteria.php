@@ -3,6 +3,7 @@
 namespace Imovs\Repository\Criteria\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Imovs\Repository\Eloquent\Contracts\Repository;
 
 /**
@@ -16,10 +17,10 @@ interface Criteria
     /**
      * Apply criteria in query repository
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model|Builder $model
      * @param \Imovs\Repository\Eloquent\Contracts\Repository $repository
      *
      * @return mixed
      */
-    public function apply(Model $model, Repository $repository);
+    public function apply($model, Repository $repository);
 }
